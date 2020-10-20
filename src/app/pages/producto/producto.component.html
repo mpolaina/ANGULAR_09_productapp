@@ -1,0 +1,85 @@
+<h1 class="animate__animated animate__fadeInLeft animate__fast">Producto <small>Nombre producto</small></h1>
+
+<div class="row text-right row animate__animated animate__fadeInRight animate__fast">
+  <div class="col">
+    <button class="btn btn-danger"
+             routerLink="/productos">
+      <i class="fas fa-arrow-left"></i>
+      Volver
+    </button>
+  </div>
+</div>
+
+<div class="row animate__animated animate__fadeIn">
+  <div class="col">
+
+    <form (ngSubmit)="guardar( f )"
+            #f="ngForm">
+
+      <div class="form-group">
+        <label>Firebase ID</label>
+        <input type="text"
+                class="form-control"
+                disabled="disabled"
+                placeholder="Firebase ID"
+                [(ngModel)]="producto.id"
+                name="id"
+                >
+        <small class="form-text text-muted">Campo autogenerado</small>
+      </div>
+      <div class="form-group">
+        <label>Nombre</label>
+        <input type="text"
+                class="form-control"
+                placeholder="Nombre producto"
+                [(ngModel)]="producto.nombre"
+                name="nombre"
+                required>
+      </div>
+      <div class="form-group">
+        <label>Descripción</label>
+        <input type="text"
+                class="form-control"
+                placeholder="Descripción"
+                [(ngModel)]="producto.descripcion"
+                name="descripcion"
+                required>
+      </div>
+      <div class="form-group">
+        <label>Cantidad</label>
+        <input type="number"
+                class="form-control"
+                placeholder="Descripción"
+                [(ngModel)]="producto.cantidad"
+                name="cantidad"
+                required>
+      </div>
+      <div class="form-group">
+        <label>Comprado</label>
+        <br>
+
+            <button *ngIf="producto.comprado"
+                     (click)="producto.comprado = false"
+                     class="btn btn-success w-50 mr-2" type="button">
+              <i class="far fa-thumbs-up"></i>
+              Si
+            </button>
+
+            <button *ngIf="!producto.comprado"
+                     (click)="producto.comprado = true"
+                     class="btn btn-danger w-50" type="button">
+              <i class="far fa-hand-point-right"></i>
+              No
+            </button>
+
+      </div>
+      <hr>
+      <div class="form-group text-center">
+        <button type="submit" class="btn btn-primary w-25">
+          <i class="far fa-save"></i>
+          Guardar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
