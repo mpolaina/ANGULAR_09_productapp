@@ -1,5 +1,5 @@
 {
-  "name": "heroesapp",
+  "name": "productsapp",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "~10.1.5",
     "@angular/router": "~10.1.5",
     "@ng-bootstrap/ng-bootstrap": "^7.0.0",
+    "angular-feather": "^6.0.10",
     "bootstrap": "^4.5.0",
     "rxjs": "~6.6.0",
     "sweetalert2": "^10.6.1",

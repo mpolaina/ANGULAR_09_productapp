@@ -1,9 +1,14 @@
-<h1 class="animate__animated animate__fadeInLeft animate__fast">Producto <small>Nombre producto</small></h1>
+
+<h3 class="animate__animated animate__fadeInLeft animate__fast">
+  <i class="fal fa-shopping-basket"></i> Producto_
+  <small> {{ producto.nombre }}</small>
+</h3>
+
 
 <div class="row text-right row animate__animated animate__fadeInRight animate__fast">
   <div class="col">
-    <button class="btn btn-danger"
-             routerLink="/productos">
+    <button class="btn btn-warning rounded-pill"
+             routerLink="/">
       <i class="fas fa-arrow-left"></i>
       Volver
     </button>
@@ -17,9 +22,9 @@
             #f="ngForm">
 
       <div class="form-group">
-        <label>Firebase ID</label>
+        <label>ID de producto</label>
         <input type="text"
-                class="form-control"
+                class="form-control rounded-pill"
                 disabled="disabled"
                 placeholder="Firebase ID"
                 [(ngModel)]="producto.id"
@@ -27,55 +32,59 @@
                 >
         <small class="form-text text-muted">Campo autogenerado</small>
       </div>
-      <div class="form-group">
+      <div class="form-group input-group-lg">
         <label>Nombre</label>
         <input type="text"
-                class="form-control"
-                placeholder="Nombre producto"
+                class="form-control rounded-pill"
+                placeholder="Ej. Pan"
                 [(ngModel)]="producto.nombre"
                 name="nombre"
                 required>
       </div>
-      <div class="form-group">
+      <div class="form-group input-group-lg">
         <label>Descripción</label>
         <input type="text"
-                class="form-control"
-                placeholder="Descripción"
+                class="form-control rounded-pill"
+                placeholder="Ej. De molde..."
                 [(ngModel)]="producto.descripcion"
                 name="descripcion"
                 required>
       </div>
-      <div class="form-group">
+      <div class="form-group input-group-lg">
         <label>Cantidad</label>
         <input type="number"
-                class="form-control"
-                placeholder="Descripción"
+                class="form-control rounded-pill"
+                placeholder="Indique el número"
                 [(ngModel)]="producto.cantidad"
                 name="cantidad"
                 required>
       </div>
       <div class="form-group">
-        <label>Comprado</label>
+        <label>Estado</label>
         <br>
 
-            <button *ngIf="producto.comprado"
-                     (click)="producto.comprado = false"
-                     class="btn btn-success w-50 mr-2" type="button">
-              <i class="far fa-thumbs-up"></i>
-              Si
+            <button (click)="producto.comprado = 'comprado'"
+                     class="btn btn-info mr-2 rounded-pill" type="button">
+              <i class="fal fa-clipboard-check"></i>
+              Comprado
             </button>
 
-            <button *ngIf="!producto.comprado"
-                     (click)="producto.comprado = true"
-                     class="btn btn-danger w-50" type="button">
-              <i class="far fa-hand-point-right"></i>
-              No
+            <button (click)="producto.comprado = 'pendiente'"
+                     class="btn btn-warning mr-2 rounded-pill" type="button">
+              <i class="fal fa-clipboard-list"></i>
+              Pendiente
+            </button>
+
+            <button (click)="producto.comprado = 'urgente'"
+                     class="btn btn-danger rounded-pill" type="button">
+              <i class="fal fa-skull-crossbones"></i>
+              Urgente
             </button>
 
       </div>
       <hr>
       <div class="form-group text-center">
-        <button type="submit" class="btn btn-primary w-25">
+        <button type="submit" class="btn btn-lg btn-block btn-primary rounded-pill">
           <i class="far fa-save"></i>
           Guardar
         </button>

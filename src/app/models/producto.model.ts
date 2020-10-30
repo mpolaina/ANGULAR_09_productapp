@@ -4,11 +4,11 @@ export class ProductoModel {
     nombre: string
     descripcion: string
     cantidad: number
-    comprado: boolean
+    comprado: string
 
     constructor(){
 
-      this.comprado = false
+      this.comprado = 'pendiente'
 
     }
 }

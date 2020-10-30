@@ -1,51 +1,87 @@
-<h1 class="animate__animated animate__fadeInLeft animate__fast">
-  Listado de Productos
-</h1>
-<hr>
-<div class="row animate__animated animate__fadeInRight animate__fast">
-  <div class="col text-right">
-    <button  routerLink="/producto/nuevo"
-              class="btn btn-primary">
-      <i class="fas fa-plus"></i>
-      Agregar
-    </button>
+<div class="row d-flex align-items-center">
+  <div class="col">
+    <h2 class="animate__animated animate__zoomIn animate__fast font-weight-bolder text-center">
+      <i class="fal fa-cart-arrow-down"></i> Shoppi<small class="text-danger">_ng</small>
+    </h2>
   </div>
-</div>
 
-<table class="table animate__animated animate__fadeInDown animate__fast mt-4">
-  <thead class="thead-dark">
+</div>
+<hr>
+
+<table *ngIf="!cargando && productos"
+        class="table table-responsive-sm animate__animated animate__fadeInUp animate__faster mt-1 mx-auto">
+  <thead class="thead-light">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Descripción</th>
-      <th scope="col">Cantidad</th>
-      <th scope="col">Comprado</th>
+      <th scope="col">Productos</th>
+      <!-- <th scope="col">Descripción</th> -->
+      <th scope="col" class="text-center">Uds.</th>
+      <th scope="col" class="text-center">Estado</th>
+      <th scope="col" class="text-center">Acción</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Pan de Molde</td>
-      <td>Integral niños</td>
-      <td>1</td>
-      <td>@mdo</td>
+    <tr *ngFor="let producto of productos; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        <p class="mb-0"><strong>{{ producto.nombre }}</strong></p>
+
+        <small>{{ producto.descripcion }}</small>
+
+      </td>
+      <td class="text-center">{{ producto.cantidad }}</td>
+      <td class="text-center">
+        <label *ngIf="producto.comprado === 'comprado'" class="badge badge-info p-2">
+          <i class="fal fa-clipboard-check fa-2x"></i>
+        </label>
+        <label *ngIf="producto.comprado === 'pendiente'" class="badge badge-warning p-2">
+          <i class="fal fa-clipboard fa-2x"></i>
+        </label>
+        <label *ngIf="producto.comprado === 'urgente'" class="badge badge-danger p-2">
+          <i class="fal fa-skull-crossbones fa-2x"></i>
+        </label>
+      </td>
+      <td>
+        <div class="d-flex justify-content-center">
+          <button [routerLink]="['/producto', producto.id]"
+                    class="btn btn-sm btn-outline-info mr-1">
+            <i class="fal fa-pencil-alt"></i>
+          </button>
+          <button (click)="borrarProducto( producto, i )"
+                    class="btn btn-sm btn-outline-danger mr-1">
+            <i class="fal fa-trash"></i>
+          </button>
+        </div>
+      </td>
     </tr>
   </tbody>
 </table>
 
-<div class="alert alert-warning text-center mt-3">
-  <h4 class="alert-heading">No hay registros</h4>
-  <p>
-    <i class="fas fa-exclamation-circle fa-2x"></i>
-  </p>
+<div *ngIf="!productos"
+      class="alert alert-danger text-center mt-3">
+      <p class="pt-2">
+        <i class="fal fa-file-signature fa-3x"></i>
+      </p>
+      <h4 class="alert-heading">No hay registros</h4>
 </div>
 
-<div class="alert alert-info text-center mt-3">
-  <h4 class="alert-heading">Cargando</h4>
+<div *ngIf="cargando && productos"
+      class="alert alert-info text-center mt-3 animate__animated animate__zoomIn">
+  <h4 class="alert-heading mb-3">Cargando</h4>
   <p>
-    <i class="fas fa-sync-alt fa-spin fa-2x"></i>
+    <!-- <i-feather name="download-cloud"></i-feather> -->
+    <i class="fad fa-spinner fa-spin fa-2x"></i>
+    <!-- <i class="fas fa-sync-alt fa-spin fa-2x"></i>  -->
   </p>
-  <p class="mb-0">
-    Espere por favor
-  </p>
+  <p class="mb-0"> Espere por favor </p>
+</div>
+
+<div class="row" *ngIf="!cargando && productos">
+  <div class="col text-center">
+    <button  routerLink="/producto/nuevo"
+              class="btn btn-primary btn-lg align-middle rounded-pill animate__animated animate__fadeInUp">
+              <i class="fal fa-bread-loaf"></i>
+      Agregar producto
+    </button>
+  </div>
 </div>
